@@ -25,7 +25,7 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@NotBlank(message = "Must enter a name!")
+	@NotNull(message = "Must enter a name!")
     @Basic(optional = false)
     @Column(nullable = false)
 	private String name;

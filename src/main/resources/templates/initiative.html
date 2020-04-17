@@ -12,47 +12,32 @@
   </head>
  <body>
  	<h1 class = "col-md-12 mt-5"> Initiative Tracker</h1>
-	   <div th:switch="${players}" class="container my-5">
+	   <div class="container my-5">
             <div class="row">
                 <div class="col-md-6">
-                    <h2 th:case="null">No players yet!</h2>
-                    <div th:case="*">
                         <h2 class="my-5">Players</h2>
-                        <table class="table table-striped table-responsive-md">
+                        <table class="table table-striped table-responsive-md" >
                             <thead>
-                                <tr>
+                                <tr align = "center">
                                     <th>Initiative</th>
                                     <th>Player</th>
+                                    <th>Edit</th>
+                                    <th>Delete</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="player : ${players}">
                                     <td th:text="${player.initiative}"></td>
                                     <td th:text="${player.name}"></td>
-                                    <td><a th:href="" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                    <td><a th:href="" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    <td><a  class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                    <td><a  class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
                                 </tr>
                             </tbody>
                         </table>
-                    </div>      
-                    <div class="col-md-6">
-                    	<form action = "#" th:object="${player}" method = "post">
-                    		<div class ="row">
-                    			<div class="form-group col-md-6">
-                    				<label for="name" class="col-form-label">Name:</label>
-                   				</div>
-                    			<div class="form-group col-md-6">
-	                                
-	                                <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name">
-	                                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
-                           		 </div>
-                    		</div>
-                    		
-                    	</form>
-                    </div> 
                 </div>
             </div>
         </div>
+        
     
     
     
