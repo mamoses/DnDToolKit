@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -34,7 +35,7 @@ public class Player {
 	@NotNull(message = "Must enter an initiative!")
     @Basic(optional = false)
     @Column(nullable = false)
-	private int initiative;
+	private Integer initiative;
 	
 	
 }

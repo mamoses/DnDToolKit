@@ -48,9 +48,9 @@ public class PlayerController {
 	 @PostMapping("/addplayer")
 	 public String addPlayer(@Valid Player player, BindingResult result, Model model) {
 		 if (result.hasErrors()) {
-	            return "add-player";
-	        }
-	        
+			
+			 return "add-player";
+		 }
 		 	playerRepository.save(player);
 	        model.addAttribute("players", playerRepository.findAll());
 		 
@@ -58,7 +58,7 @@ public class PlayerController {
 	 }
 	 
 	 @GetMapping("/addplayer")
-	 public String addPlayerGet(@Valid Player player, BindingResult result, Model model) {
+	 public String addPlayerGet( Player player, BindingResult result, Model model) {
 		 if (result.hasErrors()) {
 	            return "add-player";
 	        }
