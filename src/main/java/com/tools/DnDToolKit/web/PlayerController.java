@@ -34,12 +34,13 @@ public class PlayerController {
 	 public String showInitiative(@Valid Player player, BindingResult result, Model model){
 		 
 		 Sort sort = Sort.by(
-	        	    Sort.Order.asc("name"));
+	        	    Sort.Order.desc("initiative"));
 		 
 		 model.addAttribute("players", playerRepository.findAll(sort));
 		 
 		 return "initiative";
 	 }
+	
 	 
 	
 	 
@@ -50,18 +51,19 @@ public class PlayerController {
 	            return "add-player";
 	        }
 	        
-	        playerRepository.save(player);
-	        System.out.println(player.getName());
-	        Sort sort = Sort.by(
-	        	    Sort.Order.asc("initiative"));
-	        model.addAttribute("players", playerRepository.findAll(sort));
+		 	playerRepository.save(player);
+	        model.addAttribute("players", playerRepository.findAll());
 		 
 		 return "redirect:/initiative";
 	 }
 	 
 	 @GetMapping("/addplayer")
 	 public String addPlayerGet(@Valid Player player, BindingResult result, Model model) {
+		 if (result.hasErrors()) {
+	            return "add-player";
+	        }
 		 
+	     model.addAttribute("players", playerRepository.findAll());
 		 
 		 return "add-player";
 	 }

@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
-	@NotNull(message = "Must enter a name!")
+	@NotEmpty(message = "Must enter a name!")
     @Basic(optional = false)
     @Column(nullable = false)
 	private String name;

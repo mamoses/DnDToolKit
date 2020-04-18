@@ -8,5 +8,14 @@ tbody{
 		
 }
 
+p.edit-button, p.delete-button {
+	color:white;
+}
+
+.btn-success,.btn-danger{
+	width:70px;
+	height:40px;
+}
+
 
 
