@@ -9,8 +9,7 @@ tbody{
 }
 
 .navigation{
-	background-color: #007bff;
-	
+	background-color: DarkSlateGray;
 	overflow: hidden;
   
 	
@@ -29,7 +28,7 @@ tbody{
   color: black;
 }
 .navigation a.active {
-  background-color: #4CAF50;
+  background-color: #007bff;
   color: white;
 }
 .fa-home{
