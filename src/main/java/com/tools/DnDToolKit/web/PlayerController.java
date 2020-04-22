@@ -32,6 +32,7 @@ public class PlayerController {
 		 return "home";
 	 }
 	 
+	 
 	 @GetMapping("/initiative")
 	 public String showInitiative(@Valid Player player, BindingResult result, Model model){
 		 

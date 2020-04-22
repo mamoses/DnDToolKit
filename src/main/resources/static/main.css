@@ -1,3 +1,9 @@
+.background-img{
+	background-color: #ebf3ff;
+	background-image: url("https://www.transparenttextures.com/patterns/nice-snow.png");
+	
+}
+
 h1, h2{
 	text-align: center;
 }
@@ -9,7 +15,7 @@ tbody{
 }
 
 .navigation{
-	background-color: DarkSlateGray;
+	background-color: #2f4f4f;
 	overflow: hidden;
   
 	
