@@ -25,7 +25,7 @@ public class PlayerController {
 	        this.playerRepository = playerRepository;
 	 }
 	 
-	 @GetMapping("/")
+	 @GetMapping("/app")
 	 public String showHome() {
 		 
 		 

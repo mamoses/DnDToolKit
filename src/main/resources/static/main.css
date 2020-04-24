@@ -29,6 +29,7 @@ tbody{
 	color: white;
 	
 }
+
 .navigation a:hover {
   background-color: #ddd;
   color: black;
@@ -37,6 +38,23 @@ tbody{
   background-color: #007bff;
   color: white;
 }
+
+a.login{
+	float:right;
+	padding: 25px 18px;
+	text-decoration: none;
+	font-size: 17px;
+	color: white;
+}
+
+a.login-active{
+	float: right;
+	background-color: #007bff;
+ 	color: white;
+}
+
+
+
 .fa-home{
 	padding-left:10px;
 	padding-right:10px;
