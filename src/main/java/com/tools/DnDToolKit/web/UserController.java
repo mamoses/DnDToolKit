@@ -21,5 +21,26 @@ public class UserController {
 		 
 		 return "welcome";
 	 }
+	
+	@GetMapping("/login")
+	 public String showLogin() {
+		 
+		 
+		 return "login";
+	 }
+	
+	@GetMapping("/signup")
+	 public String showSignup() {
+		 
+		 
+		 return "signup";
+	 }
+	
+	@GetMapping("/features")
+	 public String showFeatures() {
+		 
+		 
+		 return "features";
+	 }
 
 }
