@@ -24,10 +24,17 @@ public class UserController {
 	
 	@GetMapping("/login")
 	 public String showLogin() {
-		 
+		 System.out.println("HELLO");
 		 
 		 return "login";
 	 }
+	@PostMapping("/login")
+	 public String showLoginPost() {
+		 System.out.println("H12ELLO");
+		 
+		 return "login";
+	 }
+	
 	
 	@GetMapping("/signup")
 	 public String showSignup() {
