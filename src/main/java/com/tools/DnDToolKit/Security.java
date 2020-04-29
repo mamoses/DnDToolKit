@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -22,11 +23,17 @@ public class Security extends WebSecurityConfigurerAdapter {
 				.antMatchers( "/public/**").permitAll()
 				.and()
 			.formLogin()
+				.loginPage("/login")
 				.defaultSuccessUrl("/app", true)
+				.successForwardUrl("/app")
 				.permitAll()
 				.and()
 			.logout()
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/")
+				.invalidateHttpSession(true)
+				.deleteCookies("JSESSIONID")
 				.permitAll();
+		
 		
 		
 		
