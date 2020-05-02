@@ -31,6 +31,12 @@ public class PlayerController {
 		 
 		 return "home";
 	 }
+	 @PostMapping("/app")
+	 public String showHomePost() {
+		 
+		 
+		 return "home";
+	 }
 	 
 	 
 	 @GetMapping("/initiative")

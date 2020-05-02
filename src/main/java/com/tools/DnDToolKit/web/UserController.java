@@ -24,10 +24,23 @@ public class UserController {
 	
 	@GetMapping("/login")
 	 public String showLogin() {
+		
+		 
+		 return "login";
+	 }
+	@GetMapping("/logout")
+	 public String showLogout() {
+		 
+		 
+		 return "welcome";
+	 }
+	@PostMapping("/login")
+	 public String showLoginPost() {
 		 
 		 
 		 return "login";
 	 }
+	
 	
 	@GetMapping("/signup")
 	 public String showSignup() {
