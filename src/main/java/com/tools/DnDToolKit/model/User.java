@@ -1,13 +1,13 @@
 package com.tools.DnDToolKit.model;
 
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -18,12 +18,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Player {
+public class User {
 	
 	
 	@Id
@@ -35,12 +33,9 @@ public class Player {
     @Column(nullable = false)
 	private String name;
 	
-	@NotNull(message = "Must enter an initiative!")
+	@NotNull(message = "Must enter a password!")
     @Basic(optional = false)
     @Column(nullable = false)
-	private Integer initiative;
-	
-	
-	
+	private String password;
 	
 }

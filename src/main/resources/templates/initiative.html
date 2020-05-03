@@ -31,7 +31,7 @@
                       </tr>
                   </thead>
                   <tbody>
-                      <tr th:each="player : ${players}" th:object="${player}">
+                      <tr th:each="player : ${playersSession}" th:object="${player}">
                           <td th:text="${player.initiative}"></td>
                           <td th:text="${player.name}"></td>
                           <td><a  class="btn btn-success" th:href="@{/edit/{id}(id=${player.id})}"><p class = "edit-button">Edit</p></a></td>

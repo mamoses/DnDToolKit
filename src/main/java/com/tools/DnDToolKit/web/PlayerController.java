@@ -11,6 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.tools.DnDToolKit.model.Player;
 import com.tools.DnDToolKit.model.PlayerRepository;
@@ -40,11 +47,26 @@ public class PlayerController {
 	 
 	 
 	 @GetMapping("/initiative")
-	 public String showInitiative(@Valid Player player, BindingResult result, Model model){
+	 public String showInitiative(@Valid Player player, BindingResult result, Model model, HttpSession session){
 		 
 		 Sort sort = Sort.by(
 	        	    Sort.Order.desc("initiative"));
-		 model.addAttribute("players", playerRepository.findAll(sort));
+		 List<Player> players = (List<Player>) session.getAttribute("PLAYERS_SESSION");
+		
+		 //model.addAttribute("players", playerRepository.findAll(sort));
+		 //System.out.println(notes.get(0));
+		 try {
+		 Collections.sort(players, new Comparator<Player>() {
+			  @Override
+			  public int compare(Player u1, Player u2) {
+			    return u2.getInitiative().compareTo(u1.getInitiative());
+			  }
+			});
+		 }
+		 catch(NullPointerException e){
+			 
+		 }
+		 model.addAttribute("playersSession", players!=null? players:new ArrayList<>());
 		 return "initiative";
 	 }
 	 @PostMapping("/initiative")
@@ -61,13 +83,27 @@ public class PlayerController {
 	 
 	 
 	 @PostMapping("/addplayer")
-	 public String addPlayer(@Valid Player player, BindingResult result, Model model) {
+	 public String addPlayer(@Valid Player player, BindingResult result, Model model, HttpServletRequest request) {
+		 List<Player> players = (List<Player>) request.getSession().getAttribute("PLAYERS_SESSION");
 		 if (result.hasErrors()) {
 			
 			 return "add-player";
 		 }
-		 	playerRepository.save(player);
-	        model.addAttribute("players", playerRepository.findAll());
+		 
+		 if (players == null) {
+	            players = new ArrayList<>();
+	            // if notes object is not present in session, set notes in the request session
+	            request.getSession().setAttribute("PLAYERS_SESSION", players);
+	      }
+		 
+		 players.add(player);
+	 	 playerRepository.save(player);
+	 	
+	 	 
+	 	 System.out.println(player.getId());
+         //model.addAttribute("players", playerRepository.findAll()); // TODO Investigate and Delete
+	 	 
+         request.getSession().setAttribute("PLAYERS_SESSION", players!=null? players:new ArrayList<>());
 		 return "redirect:/initiative";
 	 }
 	 
@@ -76,16 +112,24 @@ public class PlayerController {
 		 if (result.hasErrors()) {
 	            return "add-player";
 	        }
-		 
-	     model.addAttribute("players", playerRepository.findAll());
+		
+	     model.addAttribute("players", playerRepository.findAll()); // TODO Investigate and Delete
 		 return "add-player";
 	 }
 	 
 	 @GetMapping("/delete/{id}")
-	    public String deletePlayer(@PathVariable("id") long id, Model model) {
+	    public String deletePlayer(@PathVariable("id") long id, Model model, HttpServletRequest request) {
 	        Player player = playerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	        playerRepository.delete(player);
-	        model.addAttribute("players", playerRepository.findAll());
+		 	List<Player> players = (List<Player>) request.getSession().getAttribute("PLAYERS_SESSION");
+		 	
+		 	int player_position = players.indexOf(player);
+		 	
+		 	players.remove(player_position);
+		 	
+		 	playerRepository.delete(player);
+//	        model.addAttribute("players", playerRepository.findAll());
+		 	System.out.println(players);
+		 	model.addAttribute("playersSession", players!=null? players:new ArrayList<>());
 	        return "redirect:/initiative";
 	    }
 	 
