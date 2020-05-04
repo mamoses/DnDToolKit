@@ -66,12 +66,13 @@ public class PlayerController {
 		 catch(NullPointerException e){
 			 
 		 }
+		 
 		 model.addAttribute("playersSession", players!=null? players:new ArrayList<>());
 		 return "initiative";
 	 }
 	 @PostMapping("/initiative")
 	 public String showInitiativePost(@Valid Player player, BindingResult result, Model model){
-		 
+		 System.out.println("WHAT");
 		 Sort sort = Sort.by(
 	        	    Sort.Order.desc("initiative"));
 		 model.addAttribute("players", playerRepository.findAll(sort));
@@ -100,7 +101,7 @@ public class PlayerController {
 	 	 playerRepository.save(player);
 	 	
 	 	 
-	 	 System.out.println(player.getId());
+	 	 
          //model.addAttribute("players", playerRepository.findAll()); // TODO Investigate and Delete
 	 	 
          request.getSession().setAttribute("PLAYERS_SESSION", players!=null? players:new ArrayList<>());
@@ -126,28 +127,48 @@ public class PlayerController {
 		 	
 		 	players.remove(player_position);
 		 	
-		 	playerRepository.delete(player);
-//	        model.addAttribute("players", playerRepository.findAll());
-		 	System.out.println(players);
+		 	playerRepository.delete(player);	// TODO Investigate and Delete
+//	        model.addAttribute("players", playerRepository.findAll());	// TODO Investigate and Delete
+		 	
 		 	model.addAttribute("playersSession", players!=null? players:new ArrayList<>());
 	        return "redirect:/initiative";
 	    }
 	 
 	 @GetMapping("/edit/{id}")
-	    public String editPlayer(@PathVariable("id") long id, Model model) {
+	    public String editPlayer(@PathVariable("id") long id, Model model, HttpServletRequest request) {
+		 	List<Player> players = (List<Player>) request.getSession().getAttribute("PLAYERS_SESSION");
 	        Player player = playerRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-	        model.addAttribute("player", player);
+	        //model.addAttribute("player", player); //Original model method
+	        
+	        int player_position = players.indexOf(player);
+	        
+	        model.addAttribute("player", players.get(player_position));
+	        players.remove(player_position);
 	        return "edit-player";
 	    }
 	 
 	 @PostMapping("/update/{id}")
-	    public String updatePlayer(@PathVariable("id") long id, @Valid Player player, Model model, BindingResult result) {
+	    public String updatePlayer(@PathVariable("id") long id, @Valid Player player, BindingResult result, Model model,  HttpServletRequest request) {
+		 List<Player> players = (List<Player>) request.getSession().getAttribute("PLAYERS_SESSION");
+		 //request.getSession().setAttribute("PLAYERS_SESSION", players!=null? players:new ArrayList<>()); // TODO Investigate and Delete
 		 if (result.hasErrors()) {
+			 System.out.println("ERRRORRR");
 	            player.setId(id);
 	            return "edit-player";
 	        }
-	        playerRepository.save(player);
-	        model.addAttribute("users", playerRepository.findAll());
+		 	players.add(player);
+		 	
+		 	//int player_position = players.indexOf(player); // TODO Investigate and Delete
+		 	
+		 	player.setName(player.getName());
+		 	player.setId(id);
+		 	
+		 	
+		 	//players.remove(player_position);
+	        playerRepository.save(player); // Original
+	        
+	        //model.addAttribute("users", playerRepository.findAll()); // Original
+	        model.addAttribute("playersSession", players!=null? players:new ArrayList<>());
 	        return "redirect:/initiative";
 	    }
 
