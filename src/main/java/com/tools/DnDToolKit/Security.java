@@ -18,7 +18,7 @@ public class Security extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/").permitAll()
+				.antMatchers("/", "/login", "/signup").permitAll()
 				.antMatchers("/app", "/battle", "/inventory", "/initiative").authenticated()
 				.antMatchers( "/public/**").permitAll()
 				.and()
@@ -44,8 +44,8 @@ public class Security extends WebSecurityConfigurerAdapter {
 	public UserDetailsService userDetailsService() {
 		UserDetails user =
 			 User.withDefaultPasswordEncoder()
-				.username("user")
-				.password("password")
+				.username("guest")
+				.password("guest")
 				.roles("USER")
 				.build();
 		

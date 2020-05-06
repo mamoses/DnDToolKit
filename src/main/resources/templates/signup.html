@@ -19,12 +19,12 @@
     </div>
     <div class = "login-box">
     	<h1 class = "login-header">Signup</h1>
-	    	<form>
+	    	<form th:action = "@{/signup}" th:object = "${user}" method = "post">
 	    		<p>Username:</p>
-	    		<input type = "text" name ="" placeholder = "Username">
+	    		<input type = "text"  id = "name" placeholder = "Username" th:field = "*{name}">
 	    		<p>Password:</p>
-	    		<input type = "password" name="" placeholder ="Password"><br>
-	    		<input type = "submit" name="" value = "Create Account" class ="btn-primary btn login-button"><br>
+	    		<input type = "password"  id = "password" placeholder ="Password" th:field = "*{password}"><br>
+	    		<input type = "submit" name="signup" value = "Create Account" class ="btn-primary btn login-button"><br>
 	    		<a href = "/login">Login</a>
 	    	</form>
     </div>

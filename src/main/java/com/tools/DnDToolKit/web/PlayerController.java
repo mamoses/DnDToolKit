@@ -72,7 +72,7 @@ public class PlayerController {
 	 }
 	 @PostMapping("/initiative")
 	 public String showInitiativePost(@Valid Player player, BindingResult result, Model model){
-		 System.out.println("WHAT");
+		 
 		 Sort sort = Sort.by(
 	        	    Sort.Order.desc("initiative"));
 		 model.addAttribute("players", playerRepository.findAll(sort));
@@ -86,6 +86,7 @@ public class PlayerController {
 	 @PostMapping("/addplayer")
 	 public String addPlayer(@Valid Player player, BindingResult result, Model model, HttpServletRequest request) {
 		 List<Player> players = (List<Player>) request.getSession().getAttribute("PLAYERS_SESSION");
+		 System.out.println(player);
 		 if (result.hasErrors()) {
 			
 			 return "add-player";
@@ -113,8 +114,8 @@ public class PlayerController {
 		 if (result.hasErrors()) {
 	            return "add-player";
 	        }
-		
-	     model.addAttribute("players", playerRepository.findAll()); // TODO Investigate and Delete
+		 System.out.println(player);
+	     //model.addAttribute("players", playerRepository.findAll()); // TODO Investigate and Delete
 		 return "add-player";
 	 }
 	 
