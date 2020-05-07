@@ -21,9 +21,9 @@
     	<h1 class = "login-header">Login</h1>
 	    	<form th:action = "@{/login}" method = "post">
 	    		<p>Username:</p>
-	    		<input type = "text" name ="username" id ="username" placeholder = "Username">
+	    		<input type = "text" name ="username" id ="username" placeholder = "Username" required>
 	    		<p>Password:</p>
-	    		<input type = "password" name="password" id ="password" placeholder ="Password"><br>
+	    		<input type = "password" name="password" id ="password" placeholder ="Password" required><br>
 	    		<input type = "submit" name="login" value = "Login" class ="btn-primary btn login-button"><br>
 	    		<a href = "/signup"><strong>Create an Account</strong></a>
 	    	</form>

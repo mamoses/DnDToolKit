@@ -46,7 +46,7 @@ public class UserController {
 	@PostMapping("/login")
 	 public String showLoginPost(HttpServletRequest request) {
 		
-		 
+		System.out.println("HERE2323!");
 		 return "app";
 	 }
 	

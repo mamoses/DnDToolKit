@@ -54,7 +54,7 @@ public class PlayerController {
 		 
 		 List<Player> players = (List<Player>) session.getAttribute("PLAYERS_SESSION");
 		
-		 try {
+		 try {	// TODO implement this function with better practices
 		 Collections.sort(players, new Comparator<Player>() {
 			  @Override
 			  public int compare(Player player1, Player player2) {
@@ -91,6 +91,7 @@ public class PlayerController {
 			 return "add-player";
 		 }
 		 
+		 // Make sure the players List doesn't throw any errors for being null
 		 if (players == null) {
 	            players = new ArrayList<>();
 	            request.getSession().setAttribute("PLAYERS_SESSION", players);
@@ -137,7 +138,7 @@ public class PlayerController {
 		        int player_position = players.indexOf(player);
 		        
 		        model.addAttribute("player", players.get(player_position));
-		        players.remove(player_position);
+		        players.remove(player_position);	// Remove old player info so it does not double add to the Http Session
 	        }
 	        catch(IndexOutOfBoundsException e) {
 	        }

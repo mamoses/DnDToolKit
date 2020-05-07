@@ -160,15 +160,16 @@ li{
 
 .welcome-text{
 	word-spacing: 4px;
-	text-align:center;
 	font-weight:bold;
 }
 
-.guest-info{
+.welcome-info{
 	word-spacing: 4px;
-	text-align:center;
-	font-weight:normal;
+	text-align: center;
+	padding-bottom: 1px;
+	font-size: 20px;
 }
+
 
 
 
