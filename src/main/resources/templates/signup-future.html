@@ -3,7 +3,7 @@
  <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Login - D&D ToolKit</title>
+        <title>Signup - D&D ToolKit</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" >
@@ -14,18 +14,18 @@
  	<div class ="navigation">
 	    <a href = "/">D&D ToolKit</a>
 	    <a href = "/features">Features</a>
-	    <a href = "/signup" class = "login">Signup</a>
-	    <a href = "/login" class = "login, login-active">Login</a>
+	    <a href = "/signup" class = "login, login-active">Signup</a>
+	    <a href = "/login" class = "login">Login</a>
     </div>
     <div class = "login-box">
-    	<h1 class = "login-header">Login</h1>
-	    	<form th:action = "@{/login}" method = "post">
+    	<h1 class = "login-header">Signup</h1>
+	    	<form th:action = "@{/signup}" th:object = "${user}" method = "post">
 	    		<p>Username:</p>
-	    		<input type = "text" name ="username" id ="username" placeholder = "Username">
+	    		<input type = "text"  id = "name" placeholder = "Username" th:field = "*{name}">
 	    		<p>Password:</p>
-	    		<input type = "password" name="password" id ="password" placeholder ="Password"><br>
-	    		<input type = "submit" name="login" value = "Login" class ="btn-primary btn login-button"><br>
-	    		<a href = "/signup"><strong>Create an Account</strong></a>
+	    		<input type = "password"  id = "password" placeholder ="Password" th:field = "*{password}"><br>
+	    		<input type = "submit" name="signup" value = "Create Account" class ="btn-primary btn login-button"><br>
+	    		<a href = "/login">Login</a>
 	    	</form>
     </div>
     

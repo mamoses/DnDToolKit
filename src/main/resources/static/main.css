@@ -89,13 +89,12 @@ p.edit-button, p.delete-button {
 	margin: 0;
 	padding: 0 0 30px;
 	text-align: center;
-	font-size: 20;
 }
 
 .login-box p{
 	margin: 0;
 	padding:0;
-	font-weight: bold;
+	font-size: 15px;
 }
 
 .login-box input{
@@ -117,6 +116,58 @@ p.edit-button, p.delete-button {
 .home-button{
 	width: 200px;
 	height: 45px;
+}
+
+.col-form-label{
+	font-weight: bold;
+}
+
+.features-center{
+	top: 55%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	padding-top: 80px;
+	
+}
+
+.features-list{
+	padding-bottom: 20px;
+	padding-top:10px;
+	
+}
+
+.features-heading{
+	padding-bottom: 5px;
+	
+}
+
+li{
+	padding-top: 10px;
+	position: relative;
+	left:-10px;
+}
+
+.welcome-box{
+	width:800px;
+	top: 55%;
+	left: 50%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	padding: 40px 30px;
+	
+}
+
+.welcome-text{
+	word-spacing: 4px;
+	text-align:center;
+	font-weight:bold;
+}
+
+.guest-info{
+	word-spacing: 4px;
+	text-align:center;
+	font-weight:normal;
 }
 
 

@@ -19,14 +19,10 @@
     </div>
     <div class = "login-box">
     	<h1 class = "login-header">Signup</h1>
-	    	<form th:action = "@{/signup}" th:object = "${user}" method = "post">
-	    		<p>Username:</p>
-	    		<input type = "text"  id = "name" placeholder = "Username" th:field = "*{name}">
-	    		<p>Password:</p>
-	    		<input type = "password"  id = "password" placeholder ="Password" th:field = "*{password}"><br>
-	    		<input type = "submit" name="signup" value = "Create Account" class ="btn-primary btn login-button"><br>
-	    		<a href = "/login">Login</a>
-	    	</form>
+    		<p>Since this application is in its early forms and not yet complete, the sign up feature is currently disabled.</p><br>
+    		<p>As it is being worked on you can use our guest account to test out some of the features!</p><br>
+    		<p><strong>Username:</strong> guest &nbsp; <strong>Password:</strong> guestpass</p><br>
+    		<a href = "/login"><strong>Login</strong></a>
     </div>
     
  </body>
